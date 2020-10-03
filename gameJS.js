@@ -4,15 +4,20 @@ const holes = document.getElementsByClassName('hole');
 const score = document.getElementsByClassName('score');
 const moles = document.getElementsByClassName('mole');
 
-let moleArray = Array.from(moles);
-let startButton = document.getElementsByClassName('start');
+let moleArray = [];
+let holeArray = [];
+for(let i = 0; i < holes.length; i++){
+    holeArray.push(holes[i]);
+}
+let startButton = document.getElementById('start');
 let scoreNumber = 0;
 let lastHole;
 let timeUp = false;
 
-startButton.onclick = start();
+startButton.addEventListener("click", start);
 
 function start() {
+    console.log('GOOOOO');
     score.textContent = 0;
     timeUp = false;
     scoreNumber = 0;
@@ -23,16 +28,6 @@ function start() {
 
 function randomizeTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
-}
-
-function randomizeHole(holes) {
-    const index = Math.floor(Math.random() * holes.length);
-    const hole = holes[index];
-    if(hole === lastHole) {
-        return randomizeHole(holes);
-    }
-    lastHole = hole;
-    return hole;
 }
 
 function randomizeMole() {
@@ -47,10 +42,20 @@ function randomizeMole() {
     }, time);
 }
 
+function randomizeHole(holes) {
+    const index = Math.floor(Math.random() * holes.length);
+    const hole = holes[index];
+    if(hole === lastHole) {
+        return randomizeHole(holes);
+    }
+    lastHole = hole;
+    return hole;
+}
+
 function whack(e) {
     scoreNumber++;
     this.classList.remove('up');
-    score.textContent = score;
+    score.textContent = scoreNumber;
 }
 
 console.log(moles);
