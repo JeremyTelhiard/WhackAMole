@@ -9,6 +9,9 @@ let holeArray = [];
 for(let i = 0; i < holes.length; i++){
     holeArray.push(holes[i]);
 }
+for(let i = 0; i < moles.length; i++){
+    moleArray.push(moles[i]);
+}
 let startButton = document.getElementById('start');
 let scoreNumber = 0;
 let lastHole;
@@ -58,5 +61,4 @@ function whack(e) {
     score.textContent = scoreNumber;
 }
 
-console.log(moles);
 moleArray.forEach(mole => mole.addEventListener('click', whack));
