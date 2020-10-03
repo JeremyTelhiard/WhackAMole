@@ -1,8 +1,12 @@
+"use strict";
+
 const holes = document.getElementsByClassName('hole');
 const score = document.getElementsByClassName('score');
 const moles = document.getElementsByClassName('mole');
-let startButton = document.getElementsByClassName('start');
 
+let moleArray = Array.from(moles);
+let startButton = document.getElementsByClassName('start');
+let scoreNumber = 0;
 let lastHole;
 let timeUp = false;
 
@@ -11,6 +15,7 @@ startButton.onclick = start();
 function start() {
     score.textContent = 0;
     timeUp = false;
+    scoreNumber = 0;
     randomizeMole();
     setTimeout(() =>
     timeUp = true, 20000);
@@ -41,3 +46,12 @@ function randomizeMole() {
         }
     }, time);
 }
+
+function whack(e) {
+    scoreNumber++;
+    this.classList.remove('up');
+    score.textContent = score;
+}
+
+console.log(moles);
+moleArray.forEach(mole => mole.addEventListener('click', whack));
