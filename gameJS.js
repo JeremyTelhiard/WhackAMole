@@ -1,8 +1,8 @@
 "use strict";
 
 const holes = document.getElementsByClassName('hole');
-const score = document.getElementsByClassName('score');
 const moles = document.getElementsByClassName('mole');
+const score=document.getElementById("score");
 
 let moleArray = [];
 let holeArray = [];
@@ -20,13 +20,12 @@ let timeUp = false;
 startButton.addEventListener("click", start);
 
 function start() {
-    console.log('GOOOOO');
-    score.textContent = 0;
+    score.innerText = 0;
     timeUp = false;
     scoreNumber = 0;
     randomizeMole();
     setTimeout(() =>
-    timeUp = true, 20000);
+    timeUp = true, 80000);
 }
 
 function randomizeTime(min, max) {
@@ -34,7 +33,7 @@ function randomizeTime(min, max) {
 }
 
 function randomizeMole() {
-    const time = randomizeTime(200, 1000);
+    const time = randomizeTime(600, 1200);
     const hole = randomizeHole(holes);
     hole.classList.add('up');
     setTimeout(() => {
@@ -57,8 +56,10 @@ function randomizeHole(holes) {
 
 function whack(e) {
     scoreNumber++;
+    console.log(scoreNumber);
     this.classList.remove('up');
-    score.textContent = scoreNumber;
+    score.innerText = scoreNumber;
+    console.log(score.innerText);
 }
 
 moleArray.forEach(mole => mole.addEventListener('click', whack));
